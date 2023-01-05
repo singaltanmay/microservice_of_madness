@@ -1,3 +1,4 @@
+# source ./venv/bin/activate
 import jwt, datetime, os
 from flask import Flask, request
 from flask_mysqldb import MySQL
@@ -12,7 +13,6 @@ server.config["MYSQL_PASSWORD"] = os.environ.get("MYSQL_PASSWORD")
 server.config["MYSQL_DB"] = os.environ.get("MYSQL_DB")
 server.config["MYSQL_PORT"] = os.environ.get("MYSQL_PORT")
 
-
 @server.route("/login", methods=["POST"])
 def login():
     auth = request.authorization
@@ -21,7 +21,7 @@ def login():
 
     # check db for username and password
     cur = mysql.connection.cursor()
-    res = cur.execute("SELECT email,password FROM user where email=%s", (auth.username))
+    res = cur.execute("SELECT email,password FROM user where email=%s", auth.username)
     if res > 0:
         user_row = cur.fetchone()
         email = user_row[0]

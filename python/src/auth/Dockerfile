@@ -2,12 +2,13 @@ FROM python:3.10-slim-bullseye
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
-    && build-essentials default-libmysqlclient-dev \
+    build-essential default-libmysqlclient-dev \
+    python-dev  \
     && pip install --no-cache-dir --upgrade pip
 
 WORKDIR /app
 COPY ./requirements.txt /app
-RUN pip install --no-cache-dir --requirements /app/requirements.txt
+RUN python3 -m pip install --no-cache-dir --requirement /app/requirements.txt
 
 COPY . /app
 

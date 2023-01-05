@@ -1,4 +1,4 @@
-/* docker exec -i 633a5503ee30 mysql -uroot -ppassword < init.sql */
+/* docker exec -i 19ddb05a53d7 mysql -uroot -pAauth123 < /home/tanmay/Documents/microservice_of_madness/python/src/auth/init.sql */
 
 CREATE USER 'auth_user'@'localhost' IDENTIFIED BY 'Aauth123';
 
